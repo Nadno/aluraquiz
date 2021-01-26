@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle<{ theme: QuizTheme }>`
   * {
     box-sizing: border-box;
   }
+
   body {
     margin: 0;
     padding: 0;
@@ -17,9 +18,12 @@ const GlobalStyle = createGlobalStyle<{ theme: QuizTheme }>`
     // Deixa branco no começo
     color: ${({ theme }) => theme.colors.contrastText};
   }
+
   html, body {
     min-height: 100vh;
+    width: 100vw;
   }
+  
   #__next {
     flex: 1;
     display: flex;
