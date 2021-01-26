@@ -1,9 +1,9 @@
 import { createGlobalStyle, StyledProps, ThemeProvider } from "styled-components";
 
 import db from '../db.json';
-import { QuizTheme } from "../interfaces/theme";
 
-const GlobalStyle = createGlobalStyle<{ theme: QuizTheme }>`
+
+const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }

@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import BackgroundImage from "../components/BackGround";
 
-// Tagged Function abaixo
+import BackgroundImage from "../src/components/BackGround";
+import Widget from "../src/components/Widget";
+
+// Tagged Function below
 export const QuizContainer = styled.div`
   width: 100%;
   max-width: 350px;
@@ -17,7 +19,25 @@ export const QuizContainer = styled.div`
 const IndexPage = () => (
   <BackgroundImage>
     <QuizContainer>
-      Testando BackgroundImage
+      <Widget>
+        <Widget.Header>
+          <h1>The legend of zelda</h1>
+        </Widget.Header>
+        <Widget.Content>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, quam.
+          </p>
+        </Widget.Content>
+      </Widget>
+
+      <Widget>
+        <Widget.Content>
+          <h1>Quizes da Galera</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, quam.
+          </p>
+        </Widget.Content>
+      </Widget>
     </QuizContainer>
   </BackgroundImage>
 );
