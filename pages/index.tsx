@@ -1,6 +1,11 @@
+import Head from "next/head";
 import styled from "styled-components";
+import db from "../db.json";
 
-import BackgroundImage from "../src/components/BackGround";
+import QuizBackground from "../src/components/QuizBackground";
+import Footer from "../src/components/Footer";
+import GitHubCorner from "../src/components/GitHubCorner";
+import QuizLogo from "../src/components/QuizLogo";
 import Widget from "../src/components/Widget";
 
 // Tagged Function below
@@ -17,12 +22,17 @@ export const QuizContainer = styled.div`
 `;
 
 const IndexPage = () => (
-  <BackgroundImage>
+  <QuizBackground backgroundImage={db.bg}>
+    <Head>
+      <title>LoremQuiz</title>
+    </Head>
     <QuizContainer>
+      <QuizLogo className="logo" />
       <Widget>
         <Widget.Header>
-          <h1>The legend of zelda</h1>
+          <h1>The Last of Us</h1>
         </Widget.Header>
+
         <Widget.Content>
           <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, quam.
@@ -38,8 +48,12 @@ const IndexPage = () => (
           </p>
         </Widget.Content>
       </Widget>
+
+      <Footer />
     </QuizContainer>
-  </BackgroundImage>
+
+    <GitHubCorner projectUrl="/" />
+  </QuizBackground>
 );
 
 export default IndexPage;

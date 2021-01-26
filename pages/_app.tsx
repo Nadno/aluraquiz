@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const theme: QuizTheme = db.theme;
+const theme = db.theme;
 
 
 export default function App({ Component, pageProps }: StyledProps<any>) {
