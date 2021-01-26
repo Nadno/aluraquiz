@@ -24,6 +24,11 @@ export const QuizContainer = styled.div`
 const IndexPage = () => (
   <QuizBackground backgroundImage={db.bg}>
     <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta charSet="utf-8" />
+
+      <meta property="og:image" content={db.bg} key="image" />
+
       <title>LoremQuiz</title>
     </Head>
     <QuizContainer>
