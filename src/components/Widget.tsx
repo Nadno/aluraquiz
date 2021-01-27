@@ -23,7 +23,17 @@ const Widget: any = styled.div`
   }
 `;
 
+Widget.Christmas = styled.img`
+  position: absolute;
+  height: 5rem;
+
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+`;
+
 Widget.Header = styled.header`
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
