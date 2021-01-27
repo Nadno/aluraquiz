@@ -6,12 +6,14 @@ const FooterWrapper = styled.footer`
   display: flex;
   align-items: center;
   border-radius: 4px;
+  font-size: 1.4rem;
 
   img {
     width: 58px;
     margin-right: 23px;
 
   }
+  
   a {
     color: white;
     text-decoration: none;
