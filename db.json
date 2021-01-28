@@ -60,7 +60,7 @@
         "A coerção é a conversão automática de um valor para outro quando os operandos de uma expressão são diferentes. ex.: ('1' - 21)",
         "É a capacidade da linguagem de entender valores não booleanos, como valores booleanos. ex.: (if ('alguma string') {...})",
         "É a capacidade da linguagem de converter uma string para um número. ex.: ('22' - 20)",
-        "Javascript não possui nenhum tipo de coerção de tipos"
+        "Javascript não possui coerção de tipos"
       ]
     },
     {
@@ -71,7 +71,7 @@
       "alternatives": [
         "Uma função executada dentro de outra função",
         "Uma função dentro de outra função",
-        "Uma função passada como argumento para outra função, e então executada",
+        "Uma função passada como argumento para outra função, onde será executada",
         "São funções que chamam outras funções"
       ]
     },
