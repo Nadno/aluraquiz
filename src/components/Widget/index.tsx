@@ -71,6 +71,19 @@ Widget.Loading = () => (
       <p>[Desafio do Loading]</p>
     </Widget.Content>
   </Widget>
+);
+
+Widget.Result = ({ points, acertos }: { points: number; acertos:number; }) => (
+  <Widget>
+    <Widget.Header>
+      <h2>Quiz completo!</h2>
+    </Widget.Header>
+
+    <Widget.Content>
+      <p>Total de acertos: {acertos}</p>
+      <p>Pontuação final: {points}</p>
+    </Widget.Content>
+  </Widget>
 )
 
 export default Widget;
