@@ -43,33 +43,39 @@ const Option = styled.div`
 `;
 
 interface Props {
+  selectedAlt: boolean;
   alternatives: string[];
   questionId: number;
   answer: number;
-  handleAnswer(name: string, value: boolean): void;
+  handleAnswer(value: number): void;
 }
 
-const Select = ({ alternatives, answer, questionId, handleAnswer }: Props) => {
-  const [selectAlt, setSelectAlt] = useState(false);
+const Select = ({
+  selectedAlt,
+  alternatives,
+  answer,
+  questionId,
+  handleAnswer,
+}: Props) => {
+  const getAnswer = () =>
+    document.querySelector<HTMLInputElement>(`#option-${answer}`)
+      ?.nextElementSibling;
 
   const handleCheck = (e: ChangeEvent) => {
-    if (selectAlt) return;
+    if (selectedAlt) return;
     const target = e.target as HTMLInputElement;
-    const { name, value, nextElementSibling } = target;
-    
+    const { value, nextElementSibling } = target;
+
     const result = Number(value) === answer;
-    
+    handleAnswer(result ? 100 : 0);
+
     (nextElementSibling as HTMLInputElement).classList.add(
       result ? 'success' : 'wrong'
     );
 
     if (!result) {
-      document.querySelector<HTMLInputElement>(`#option-${answer}`)
-        ?.nextElementSibling?.classList.add('unsuccess');
+      getAnswer()?.classList.add('unsuccess');
     }
-
-    handleAnswer(name, result);
-    setSelectAlt(true);
   };
 
   const getSelectOptions = (alt: string, key: number) => {

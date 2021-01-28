@@ -10,7 +10,8 @@ interface Props {
   questionIndex: number;
   totalQuestions: number;
   children: any;
-  handleAnswer(name: string, value: boolean): void;
+  selectedAlt: boolean;
+  handleAnswer(value: number): void;
 }
 
 const QuestionWidget = ({
@@ -22,6 +23,7 @@ const QuestionWidget = ({
   questionIndex,
   totalQuestions,
   handleAnswer,
+  selectedAlt,
   children,
 }: Props) => {
 
@@ -43,6 +45,7 @@ const QuestionWidget = ({
           questionId={questionIndex}
           handleAnswer={handleAnswer}
           answer={answer}
+          selectedAlt={selectedAlt}
         />
         {children}
       </Widget.Content>

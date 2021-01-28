@@ -11,10 +11,10 @@ import Widget from '../src/components/Widget';
 import Button from '../src/components/Button';
 
 const Quiz = () => {
+  const [points, setPoints] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedAlt, setSelectedAlt] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
-
-  const [answers, setAnswers] = useState<{ [propName: string]: boolean }>({});
 
   const question = db.questions[questionIndex];
   const totalQuestions = db.questions.length;
@@ -28,14 +28,12 @@ const Quiz = () => {
     stopFalseLoading();
   }, [questionIndex]);
 
-  const handleAnswer = (name: string, value: boolean) => {
-    setAnswers({
-      ...answers,
-      [name]: value,
-    });
+  const handleAnswer = (value: number) => {
+    setSelectedAlt(true);
+    setPoints((prev) => prev + value);
   };
 
-  const notAnswered = answers?.[`question__${questionIndex}`] === undefined;
+  const notAnswered = !selectedAlt;
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -43,25 +41,30 @@ const Quiz = () => {
 
     setQuestionIndex((prevQuestion) => prevQuestion + 1);
     setIsLoading(true);
+    setSelectedAlt(false);
   };
+
+  const isCompletedAllQuestions = questionIndex + 1 > totalQuestions;
+  const acertos = points / 100;
 
   return (
     <QuizBackground backgroundImage={db.bg}>
       <Head>
         <meta property="og:image" content={db.bg} key="ogimage" />
+        <title>{db.title}</title>
       </Head>
 
       <QuizContainer>
         <QuizLogo className="logo" />
-
-        {isLoading ? (
-          <Widget.Loading />
-        ) : (
+        {isLoading && <Widget.Loading />}
+        {isCompletedAllQuestions && <Widget.Result points={points} acertos={acertos} />}
+        {!isLoading && !isCompletedAllQuestions && (
           <form onSubmit={handleSubmit}>
             <QuestionWidget
               totalQuestions={totalQuestions}
               questionIndex={questionIndex}
               handleAnswer={handleAnswer}
+              selectedAlt={selectedAlt}
               {...question}
             >
               <Button type="submit" disabled={notAnswered}>
