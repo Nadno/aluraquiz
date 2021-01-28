@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 
-const SelectStyle = styled.div`
+const Option = styled.div`
   input {
     position: absolute;
     display: none;
@@ -25,6 +25,10 @@ const SelectStyle = styled.div`
 
     &.success {
       background-color: ${({ theme }) => theme.colors.success};
+    }
+
+    &.unsuccess {
+      border: 2px solid ${({ theme }) => theme.colors.success};
     }
 
     &.wrong {
@@ -52,11 +56,17 @@ const Select = ({ alternatives, answer, questionId, handleAnswer }: Props) => {
     if (selectAlt) return;
     const target = e.target as HTMLInputElement;
     const { name, value, nextElementSibling } = target;
+    
     const result = Number(value) === answer;
-
+    
     (nextElementSibling as HTMLInputElement).classList.add(
       result ? 'success' : 'wrong'
     );
+
+    if (!result) {
+      document.querySelector<HTMLInputElement>(`#option-${answer}`)
+        ?.nextElementSibling?.classList.add('unsuccess');
+    }
 
     handleAnswer(name, result);
     setSelectAlt(true);
@@ -65,7 +75,7 @@ const Select = ({ alternatives, answer, questionId, handleAnswer }: Props) => {
   const getSelectOptions = (alt: string, key: number) => {
     const altKey = `option-${key}`;
     return (
-      <SelectStyle key={altKey}>
+      <Option key={altKey}>
         <input
           id={altKey}
           value={key}
@@ -74,7 +84,7 @@ const Select = ({ alternatives, answer, questionId, handleAnswer }: Props) => {
           onChange={handleCheck}
         />
         <label htmlFor={altKey}>{alt}</label>
-      </SelectStyle>
+      </Option>
     );
   };
 

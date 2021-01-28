@@ -1,23 +1,104 @@
 {
   "bg": "https://cms-assets.tutsplus.com/uploads/users/48/posts/29789/image/js-product.png",
-  "title": "Quiz CSS da Alura",
-  "description": "Teste os seus conhecimentos sobre CSS e vamos ver quantos layouts você vai deixar de quebrar",
+  "title": "Quiz JS",
+  "description": "Teste seus conhecimentos em Javascript",
   "questions": [
     {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
-      "description": "Essa é pra aquecer",
+      "image": "https://i.gifer.com/JKZE.gif",
+      "title": "Quais são os tipos de escopos em JS?",
+      "description": "Escopo é a área de visibilidade de uma variável ou função.",
       "answer": 2,
-      "alternatives": [".elemento", "*elemento", "#elemento", "%elemento"]
+      "alternatives": [
+        "Escopo global, e escopo de Classes",
+        "Há o escopo global, e o escopo local que é definido para funções e Classes",
+        "Escopo global, escopo local e escopo de bloco, que é definido estruturas como IF e FOR",
+        "Escopo local, que é definido para funções e escopo de Classes"
+      ]
     },
     {
       "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
-      "description": "Faz tempo em haha",
+      "title": "Qual das opções abaixo melhor descreve IIFE em JS?",
+      "description": "Immediately Invoked Function",
+      "answer": 1,
+      "alternatives": [
+        "IIFE, como diz a tradução, é uma função imediatamente executada",
+        "A IFFE (Função Imediatamente Executada) é uma função utilizada entre parêntes para dizer a linguagem que não estamos apenas declarando a função",
+        "IIFE define um tipo especial de função para a linguagem, que pode se executada imediatamente",
+        "IIFE é uma função que cria um novo escopo para o código local"
+      ]
+    },
+    {
+      "image": "https://community.sagecrm.com/cfs-file.ashx/__key/communityserver-blogs-components-weblogfiles/00-00-00-00-08/7002.Slide54.PNG",
+      "title": "Qual a diferença entre a atribuição de tipos primitivos e objetos na linguagem?",
+      "description": "Diferença entre tipos",
+      "answer": 3,
+      "alternatives": [
+        "Não é possível comparar valores primitivos na linguagem, diferente de objetos",
+        "Não é permitido atribuir valores primitivos a objetos em JS, e nem o contrário",
+        "Javascript não permite atribuir objetos a outros objetos",
+        "Na atribuição de valores primitivos é feito uma copia do valor, enquanto na atribuição de objetos, é feita apenas uma referencia a outro objeto ou variável"
+      ]
+    },
+    {
+      "image": "https://blog.da2k.com.br/uploads/2017/01/object-reference-javascript.png",
+      "title": "Qual valor em JS não é igual a ele mesmo?",
+      "description": "undefined === undefined",
       "answer": 0,
       "alternatives": [
-        "background: linear-gradient(#e66465, #9198e5);",
-        "background: gradient(#e66465, #9198e5);"
+        "NaN",
+        "undefined",
+        "null",
+        "Nenhum valor é diferente dele mesmo"
+      ]
+    },
+    {
+      "image": "https://blog.da2k.com.br/uploads/2017/01/object-reference-javascript.png",
+      "title": "O que é a coerção implícita de tipos?",
+      "description": "if (obj1) {...}",
+      "answer": 0,
+      "alternatives": [
+        "A coerção é a conversão automática de um valor para outro quando os operandos de uma expressão são diferentes. ex.: ('1' - 21)",
+        "É a capacidade da linguagem de entender valores não booleanos, como valores booleanos. ex.: (if ('alguma string') {...})",
+        "É a capacidade da linguagem de converter uma string para um número. ex.: ('22' - 20)",
+        "Javascript não possui nenhum tipo de coerção de tipos"
+      ]
+    },
+    {
+      "image": "https://blog.da2k.com.br/uploads/2017/01/object-reference-javascript.png",
+      "title": "O que melhor descreve callbacks?",
+      "description": "function (..) {...}",
+      "answer": 2,
+      "alternatives": [
+        "Uma função executada dentro de outra função",
+        "Uma função dentro de outra função",
+        "Uma função passada como argumento para outra função, e então executada",
+        "São funções que chamam outras funções"
+      ]
+    },
+    {
+      "image": "https://blog.da2k.com.br/uploads/2017/01/object-reference-javascript.png",
+      "title": "Qual das alternativas abaixo melhor diferencia funções normais de arrow functions?",
+      "description": "(..) => {...}",
+      "answer": 2,
+      "alternatives": [
+        "Arrow function é mais fácil de se digitar",
+        "Uma função normal não cria um novo escopo para o this",
+        "Uma arrow function não cria um novo escopo para o this",
+        "Uma arrow function cria um novo escopo para o this"
+      ]
+    },
+    {
+      "image": "https://blog.da2k.com.br/uploads/2017/01/object-reference-javascript.png",
+      "title": "Como é possível criar um novo escopo de bloco em JS?",
+      "description": "var name = 'escopo';",
+      "answer": 3,
+      "alternatives": [
+        "Nenhuma alternativa",
+        "function foo(..) { ... };",
+        "(function (..) { ... }())",
+        "Todas alternativas abaixo",
+        "if (true) { ... }",
+        "{ var name = 'novo escopo'; }"
       ]
     }
   ],
