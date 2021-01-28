@@ -9,7 +9,7 @@ declare module 'styled-components' {
       contrastText: string;
       wrong: string;
       success: string;
-    },
+    };
     borderRadius: string;
   }
 }
