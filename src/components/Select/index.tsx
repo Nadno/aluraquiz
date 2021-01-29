@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 const Option = styled.div`
@@ -69,9 +69,8 @@ const Select = ({
     const result = Number(value) === answer;
     handleAnswer(result ? 100 : 0);
 
-    (nextElementSibling as HTMLInputElement).classList.add(
-      result ? 'success' : 'wrong'
-    );
+    (nextElementSibling as HTMLInputElement)
+      .classList.add(result ? 'success' : 'wrong');
 
     if (!result) {
       getAnswer()?.classList.add('unsuccess');
