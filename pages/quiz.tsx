@@ -1,6 +1,6 @@
 import React, { FormEvent, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
-import db from '../db.json';
 
 import QuizBackground from '../src/layouts/QuizBackground';
 import QuizContainer from '../src/layouts/QuizContainer';
@@ -11,22 +11,34 @@ import Widget from '../src/components/Widget';
 import Button from '../src/components/Button';
 
 const Quiz = () => {
+  const { name } = useRouter().query;
+  const userName = name ? name : '';
+
+  const [db, setDb] = useState({
+    title: '',
+    bg: '',
+    description: '',
+    questions: [],
+  });
+
   const [points, setPoints] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedAlt, setSelectedAlt] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
 
-  const question = db.questions[questionIndex];
-  const totalQuestions = db.questions.length;
-
-  const stopFalseLoading = (oneSecond = 1000) =>
-    setTimeout(() => {
-      setIsLoading(false);
-    }, oneSecond);
+  const question = db?.questions[questionIndex];
+  const totalQuestions = db?.questions.length;
 
   useEffect(() => {
-    stopFalseLoading();
-  }, [questionIndex]);
+    fetch('http://localhost:3000/api/db')
+      .then((res) => res.json())
+      .then((res) => {
+        setDb(res);
+        setIsLoading(false);
+      });
+  }, []);
+
+  useEffect(() => setIsLoading(false), [questionIndex])
 
   const handleAnswer = (value: number) => {
     setSelectedAlt(true);
@@ -40,25 +52,34 @@ const Quiz = () => {
     if (notAnswered) return;
 
     setQuestionIndex((prevQuestion) => prevQuestion + 1);
-    setIsLoading(true);
     setSelectedAlt(false);
+    setIsLoading(true);
   };
 
   const isCompletedAllQuestions = questionIndex + 1 > totalQuestions;
   const acertos = points / 100;
 
   return (
-    <QuizBackground backgroundImage={db.bg}>
+    <QuizBackground backgroundImage={db?.bg}>
       <Head>
-        <meta property="og:image" content={db.bg} key="ogimage" />
-        <title>{db.title}</title>
+        <meta property="og:image" content={db?.bg} key="ogimage" />
+        <meta
+          property="og:description"
+          content={db?.description}
+          key="ogdescription"
+        />
+
+        <title>{db?.title}</title>
       </Head>
 
       <QuizContainer>
         <QuizLogo className="logo" />
-        {isLoading && <Widget.Loading />}
-        {isCompletedAllQuestions && <Widget.Result points={points} acertos={acertos} />}
-        {!isLoading && !isCompletedAllQuestions && (
+        {isLoading && !isCompletedAllQuestions && <Widget.Loading />}
+        {!isLoading && isCompletedAllQuestions && (
+          <Widget.Result user={userName} points={points} acertos={acertos} />
+        )}
+
+        {!isCompletedAllQuestions && !isLoading && (
           <form onSubmit={handleSubmit}>
             <QuestionWidget
               totalQuestions={totalQuestions}

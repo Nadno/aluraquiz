@@ -46,7 +46,7 @@ Widget.Header = styled.header`
 
 Widget.Content = styled.div`
   padding: 24px 32px 32px 32px;
-  
+
   h1 {
     margin-bottom: 2rem;
   }
@@ -73,17 +73,24 @@ Widget.Loading = () => (
   </Widget>
 );
 
-Widget.Result = ({ points, acertos }: { points: number; acertos:number; }) => (
+interface ResultProps {
+  points: number;
+  acertos: number;
+  user: string;
+}
+
+Widget.Result = ({ points, acertos, user }: ResultProps) => (
   <Widget>
     <Widget.Header>
       <h2>Quiz completo!</h2>
     </Widget.Header>
 
     <Widget.Content>
+      <h3>Parabéns {user}</h3>
       <p>Total de acertos: {acertos}</p>
       <p>Pontuação final: {points}</p>
     </Widget.Content>
   </Widget>
-)
+);
 
 export default Widget;
