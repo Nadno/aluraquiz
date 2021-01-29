@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
+import { setShowAnimation } from '../../utils/animations';
 
 const Option = styled.div`
   input {
@@ -80,7 +81,10 @@ const Select = ({
   const getSelectOptions = (alt: string, key: number) => {
     const altKey = `option-${key}`;
     return (
-      <Option key={altKey}>
+      <Option
+        key={altKey}
+        {...setShowAnimation({ delay: Number(`0.${key+1}`), duration: 0.5 })}
+      >
         <input
           id={altKey}
           value={key}

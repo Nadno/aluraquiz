@@ -2,6 +2,8 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
+import { setShowAnimation } from '../../utils/animations';
+
 import QuizBackground from '../../layouts/QuizBackground';
 import QuizContainer from '../../layouts/QuizContainer';
 import Footer from '../../components/Footer';
@@ -80,7 +82,9 @@ const Quiz = ({ quiz }: { quiz: QuizDB; }) => {
           </form>
         )}
 
-        <Footer />
+        <Footer
+          {...setShowAnimation({ delay: 0, duration: 0.5 })}
+        />
       </QuizContainer>
     </QuizBackground>
   );

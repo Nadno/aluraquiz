@@ -13,11 +13,12 @@ const SVG = styled.svg`
   vertical-align: middle;
 `;
 
-export default function BackLinkArrow({ href }: { href: string }) {
+export default function BackLinkArrow({ href, ...props }: { href: string }) {
   return (
     <StyledLink
       href={href}
       style={{ width: '24px', height: '24px', display: 'inline-block' }}
+      {...props}
     >
       <SVG
         xmlns="http://www.w3.org/2000/svg"

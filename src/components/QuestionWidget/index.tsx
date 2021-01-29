@@ -2,6 +2,8 @@ import Widget from '../Widget';
 import Select from '../Select';
 import BackLinkArrow from '../BackLink';
 
+import { setShowAnimation, LinkAnimation } from '../../utils/animations';
+
 interface Props {
   title: string;
   image: string;
@@ -27,21 +29,22 @@ const QuestionWidget = ({
   selectedAlt,
   children,
 }: Props) => {
-
-
   return (
-    <Widget>
+    <Widget {...setShowAnimation({ delay: 0, duration: 0.5 })}>
       <Widget.Header>
-        <BackLinkArrow href="/" />
+        <BackLinkArrow
+          {...LinkAnimation}
+          href="/"
+        />
         <h3>{`Pergunta ${questionIndex + 1} de ${totalQuestions}`}</h3>
       </Widget.Header>
-  
+
       <Widget.Image src={image} alt="QuizImage" />
-  
+
       <Widget.Content>
         <h2>{title}</h2>
         <p style={{ margin: '1rem 0' }}>{description}</p>
-  
+
         <Select
           alternatives={alternatives}
           questionId={questionIndex}
@@ -52,7 +55,7 @@ const QuestionWidget = ({
         {children}
       </Widget.Content>
     </Widget>
-  )
+  );
 };
 
 export default QuestionWidget;
