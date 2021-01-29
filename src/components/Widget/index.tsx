@@ -1,7 +1,9 @@
 import styled from 'styled-components';
+import BackLinkArrow from '../BackLink';
+import Link from '../Link';
 
 const Widget: any = styled.div`
-  margin: 24px 0;
+  margin: 1.5rem 0;
   border: 1px solid ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme }) => theme.colors.mainBg};
   border-radius: 4px;
@@ -20,6 +22,10 @@ const Widget: any = styled.div`
     font-weight: 400;
     line-height: 1;
   }
+
+  ul {
+    list-style: none;
+  }
 `;
 
 Widget.Christmas = styled.img`
@@ -36,7 +42,7 @@ Widget.Header = styled.header`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 18px 32px;
+  padding: 1.8rem 3.2rem;
   background-color: ${({ theme }) => theme.colors.primary};
 
   * {
@@ -48,7 +54,7 @@ Widget.Content = styled.div`
   padding: 24px 32px 32px 32px;
 
   h1 {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   ul {
@@ -75,22 +81,38 @@ Widget.Loading = () => (
 
 interface ResultProps {
   points: number;
-  acertos: number;
+  hits: number;
   user: string;
 }
 
-Widget.Result = ({ points, acertos, user }: ResultProps) => (
+Widget.Result = ({ points, hits, user }: ResultProps) => (
   <Widget>
     <Widget.Header>
+      <BackLinkArrow href="/" />
       <h2>Quiz completo!</h2>
     </Widget.Header>
 
     <Widget.Content>
       <h3>Parabéns {user}</h3>
-      <p>Total de acertos: {acertos}</p>
+      <p>Total de acertos: {hits}</p>
       <p>Pontuação final: {points}</p>
     </Widget.Content>
   </Widget>
 );
+
+Widget.Topic = styled(Link)`
+  width: 100%;
+  display: block;
+  padding: 1.5rem;
+
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.contrastText};
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: ${({ theme }) => theme.borderRadius};
+
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1;
+`;
 
 export default Widget;
