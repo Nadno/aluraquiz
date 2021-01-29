@@ -28,11 +28,11 @@ const IndexPage = () => {
   };
 
   const isDisabled = !user.trim();
-  
+
   return (
-    <QuizBackground backgroundImage={db.bg}>
+    <QuizBackground backgroundImage={db.quizzes[0].bg}>
       <Head>
-        <meta property="og:image" content={db.bg} key="ogimage" />
+        <meta property="og:image" content={db.quizzes[0].bg} key="ogimage" />
         <meta
           property="og:description"
           content="Descubra o quanto você conhece javascript"
@@ -72,10 +72,29 @@ const IndexPage = () => {
         <Widget>
           <Widget.Content>
             <h1>Quizes da Galera</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel,
-              quam.
-            </p>
+
+            <ul>
+              {db.external.map((link) => {
+                const prepareUrl = link
+                  .replace(/\//g, '')
+                  .replace('https:', '')
+                  .replace('.vercel.app', '');
+                const [repoName, user] = prepareUrl.split('.');
+
+                const repoAndUser = `${repoName} - ${user}`;
+
+                return (
+                  <li key={repoAndUser}>
+                    <Widget.Topic
+                      href={`/quiz/${repoName}___${user}`}
+                      title={repoAndUser}
+                    >
+                      {repoAndUser}
+                    </Widget.Topic>
+                  </li>
+                );
+              })}
+            </ul>
           </Widget.Content>
         </Widget>
 

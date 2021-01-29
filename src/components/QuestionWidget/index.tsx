@@ -1,5 +1,6 @@
 import Widget from '../Widget';
 import Select from '../Select';
+import BackLinkArrow from '../BackLink';
 
 interface Props {
   title: string;
@@ -31,6 +32,7 @@ const QuestionWidget = ({
   return (
     <Widget>
       <Widget.Header>
+        <BackLinkArrow href="/" />
         <h3>{`Pergunta ${questionIndex + 1} de ${totalQuestions}`}</h3>
       </Widget.Header>
   

@@ -8,7 +8,7 @@ const Input: any = styled.input`
   border-radius: ${({ theme }) => theme.borderRadius};
   color: ${({ theme }) => theme.colors.contrastText};
   background-color: initial;
-  margin: 2.5rem 0;
+  margin: 1.5rem 0;
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.primary};
