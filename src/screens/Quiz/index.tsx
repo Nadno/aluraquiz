@@ -2,43 +2,28 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import QuizBackground from '../src/layouts/QuizBackground';
-import QuizContainer from '../src/layouts/QuizContainer';
-import Footer from '../src/components/Footer';
-import QuizLogo from '../src/components/QuizLogo';
-import QuestionWidget from '../src/components/QuestionWidget';
-import Widget from '../src/components/Widget';
-import Button from '../src/components/Button';
+import QuizBackground from '../../layouts/QuizBackground';
+import QuizContainer from '../../layouts/QuizContainer';
+import Footer from '../../components/Footer';
+import QuizLogo from '../../components/QuizLogo';
+import QuestionWidget from '../../components/QuestionWidget';
+import Widget from '../../components/Widget';
+import Button from '../../components/Button';
 
-const Quiz = () => {
+import { QuizDB } from '../../interfaces/db';
+
+const Quiz = ({ quiz }: { quiz: QuizDB; }) => {
   const { name } = useRouter().query;
-  const userName = name ? name : '';
-
-  const [db, setDb] = useState({
-    title: '',
-    bg: '',
-    description: '',
-    questions: [],
-  });
 
   const [points, setPoints] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedAlt, setSelectedAlt] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
 
-  const question = db?.questions[questionIndex];
-  const totalQuestions = db?.questions.length;
+  const question = quiz?.questions[questionIndex];
+  const totalQuestions = quiz?.questions.length;
 
-  useEffect(() => {
-    fetch('http://localhost:3000/api/db')
-      .then((res) => res.json())
-      .then((res) => {
-        setDb(res);
-        setIsLoading(false);
-      });
-  }, []);
-
-  useEffect(() => setIsLoading(false), [questionIndex])
+  useEffect(() => setIsLoading(false), [questionIndex]);
 
   const handleAnswer = (value: number) => {
     setSelectedAlt(true);
@@ -57,26 +42,26 @@ const Quiz = () => {
   };
 
   const isCompletedAllQuestions = questionIndex + 1 > totalQuestions;
-  const acertos = points / 100;
+  const hits = points / 100;
 
   return (
-    <QuizBackground backgroundImage={db?.bg}>
+    <QuizBackground backgroundImage={quiz?.bg}>
       <Head>
-        <meta property="og:image" content={db?.bg} key="ogimage" />
+        <meta property="og:image" content={quiz?.bg} key="ogimage" />
         <meta
           property="og:description"
-          content={db?.description}
+          content={quiz?.description}
           key="ogdescription"
         />
 
-        <title>{db?.title}</title>
+        <title>{quiz?.title}</title>
       </Head>
 
       <QuizContainer>
         <QuizLogo className="logo" />
         {isLoading && !isCompletedAllQuestions && <Widget.Loading />}
         {!isLoading && isCompletedAllQuestions && (
-          <Widget.Result user={userName} points={points} acertos={acertos} />
+          <Widget.Result user={name} points={points} hits={hits} />
         )}
 
         {!isCompletedAllQuestions && !isLoading && (
