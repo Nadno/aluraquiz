@@ -1,15 +1,6 @@
 import 'styled-components';
+import { ThemeDB } from './src/interfaces/db';
 
 declare module 'styled-components' {
-  export interface DefaultTheme {
-    colors: {
-      primary: string;
-      secondary: string;
-      mainBg: string;
-      contrastText: string;
-      wrong: string;
-      success: string;
-    };
-    borderRadius: string;
-  }
+  export interface DefaultTheme extends ThemeDB {}
 }
