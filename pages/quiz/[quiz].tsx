@@ -1,15 +1,34 @@
 import Quiz from '../../src/screens/Quiz';
-import db from '../../db.json';
 
 import { GetStaticPropsContext } from 'next';
 import { QuizDB } from '../../src/interfaces/db';
+import Head from 'next/head';
 
-export default function QuizPage({ quiz }: { quiz: number }) {
-  return <Quiz quiz={db.quizzes[quiz]} />;
+export default function QuizPage({ quiz }: { quiz: QuizDB }) {
+  return (
+    <>
+      <Head>
+        <meta property="og:image" content={quiz?.bg} key="ogimage" />
+        <meta
+          property="og:description"
+          content={quiz?.description}
+          key="ogdescription"
+        />
+
+        <title>Quiz - {quiz?.title}</title>
+      </Head>
+
+      <Quiz quiz={quiz} />
+    </>
+  );
 }
 
-export function getStaticProps({ params }: GetStaticPropsContext) {
-  const quiz = params ? parseInt((params.quiz as unknown) as string) : 0;
+export async function getStaticProps({ params }: GetStaticPropsContext) {
+  const quizId = params ? Number(params.quiz as string) : 0;
+  const quiz = await fetch(`http://localhost:3000/api/db`)
+    .then((res) => (res.ok ? res.json() : null))
+    .then((res) => res.quizzes[quizId]);
+
   return {
     props: {
       quiz,
