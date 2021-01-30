@@ -1,6 +1,4 @@
-import React, { FormEvent, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import { setShowAnimation } from '../../utils/animations';
 
@@ -12,10 +10,12 @@ import QuestionWidget from '../../components/QuestionWidget';
 import Widget from '../../components/Widget';
 import Button from '../../components/Button';
 
-import { QuizDB } from '../../interfaces/db';
+import { QuizDB, ExternalQuizDB } from '../../interfaces/db';
+import QuizForm from '../../components/QuizForm';
 
-const Quiz = ({ quiz }: { quiz: QuizDB; }) => {
-  const { name } = useRouter().query;
+const Quiz = ({ quiz }: { quiz: QuizDB | ExternalQuizDB }) => {
+  const [start, setStart] = useState(false);
+  const [name, setName] = useState('');
 
   const [points, setPoints] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -26,6 +26,16 @@ const Quiz = ({ quiz }: { quiz: QuizDB; }) => {
   const totalQuestions = quiz?.questions.length;
 
   useEffect(() => setIsLoading(false), [questionIndex]);
+
+  const handleFormChange = (e: ChangeEvent) => {
+    const { value } = e.target as HTMLInputElement;
+    setName(value);
+  };
+
+  const handleFormStart = (e: FormEvent) => {
+    e.preventDefault();
+    setStart(true);
+  };
 
   const handleAnswer = (value: number) => {
     setSelectedAlt(true);
@@ -46,45 +56,50 @@ const Quiz = ({ quiz }: { quiz: QuizDB; }) => {
   const isCompletedAllQuestions = questionIndex + 1 > totalQuestions;
   const hits = points / 100;
 
+  const inGame = !isCompletedAllQuestions && !isLoading;
+  const gameComplete = !isLoading && isCompletedAllQuestions;
+  const loading = isLoading && !isCompletedAllQuestions;
+
   return (
     <QuizBackground backgroundImage={quiz?.bg}>
-      <Head>
-        <meta property="og:image" content={quiz?.bg} key="ogimage" />
-        <meta
-          property="og:description"
-          content={quiz?.description}
-          key="ogdescription"
-        />
-
-        <title>{quiz?.title}</title>
-      </Head>
-
       <QuizContainer>
         <QuizLogo className="logo" />
-        {isLoading && !isCompletedAllQuestions && <Widget.Loading />}
-        {!isLoading && isCompletedAllQuestions && (
-          <Widget.Result user={name} points={points} hits={hits} />
+
+        {!start && (
+          <QuizForm
+            name={name}
+            title={quiz.title}
+            description={quiz.description}
+            handleStart={handleFormStart}
+            handleChange={handleFormChange}
+          />
         )}
 
-        {!isCompletedAllQuestions && !isLoading && (
-          <form onSubmit={handleSubmit}>
-            <QuestionWidget
-              totalQuestions={totalQuestions}
-              questionIndex={questionIndex}
-              handleAnswer={handleAnswer}
-              selectedAlt={selectedAlt}
-              {...question}
-            >
-              <Button type="submit" disabled={notAnswered}>
-                Próxima
-              </Button>
-            </QuestionWidget>
-          </form>
+        {start && (
+          <>
+            {loading && <Widget.Loading />}
+            {gameComplete && (
+              <Widget.Result user={name} points={points} hits={hits} />
+            )}
+            {inGame && (
+              <form onSubmit={handleSubmit}>
+                <QuestionWidget
+                  totalQuestions={totalQuestions}
+                  questionIndex={questionIndex}
+                  handleAnswer={handleAnswer}
+                  selectedAlt={selectedAlt}
+                  {...question}
+                >
+                  <Button type="submit" disabled={notAnswered}>
+                    Próxima
+                  </Button>
+                </QuestionWidget>
+              </form>
+            )}
+          </>
         )}
 
-        <Footer
-          {...setShowAnimation({ delay: 0, duration: 0.5 })}
-        />
+        <Footer {...setShowAnimation({ delay: 0, duration: 0.5 })} />
       </QuizContainer>
     </QuizBackground>
   );

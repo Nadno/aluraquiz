@@ -14,9 +14,10 @@ const QuizContainer: any = styled.div`
 QuizContainer.Grid = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+  justify-content: center;
+
   gap: 1rem;
-  padding-top: 110px;
-  
+  margin-top: 110px;
 `;
 
 export default QuizContainer;
