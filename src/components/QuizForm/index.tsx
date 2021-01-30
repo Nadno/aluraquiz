@@ -1,50 +1,43 @@
-import { ChangeEvent, FormEvent, useState } from "react";
-import { useRouter } from "next/router";
+import { ChangeEvent, FormEvent } from 'react';
 
-import { setShowAnimation } from "../../utils/animations";
+import { setShowAnimation } from '../../utils/animations';
 
-import Button from "../Button";
-import Input from "../Input";
-import Widget from "../Widget";
+import Button from '../Button';
+import Input from '../Input';
+import Widget from '../Widget';
 
 interface Props {
-  id: number;
+  name: string;
   title: string;
   description: string;
+  handleStart(e: FormEvent): void;
+  handleChange(e: ChangeEvent): void;
 }
 
-export default function QuizForm({ id, title, description }: Props) {
-  const [user, setUser] = useState('');
-  const router = useRouter();
-
-  const handleChange = (e: ChangeEvent) => {
-    const { value } = e.target as HTMLInputElement;
-    setUser(value);
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    router.push(`/quiz/${id}?name=${user}`);
-  };
-
-  const isDisabled = !user.trim() || !(id >= 0);
+export default function QuizForm({
+  name,
+  title,
+  description,
+  handleStart,
+  handleChange,
+}: Props) {
+  const isDisabled = !name.trim();
 
   return (
     <Widget {...setShowAnimation({ delay: 0, duration: 0.5 })}>
       <Widget.Header>
-        <h1>{title}</h1>
+        <h1>Quiz - {title}</h1>
         {/* <Widget.Christmas src="https://cdn.pixabay.com/photo/2021/01/03/23/40/christmas-5885920_1280.png" /> */}
       </Widget.Header>
 
       <Widget.Content>
         <p>{description}</p>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleStart}>
           <Input.Text
             id="name"
             name="name"
-            value={user}
+            value={name}
             onChange={handleChange}
             placeholder="Digite um nome para jogar :)"
           />
