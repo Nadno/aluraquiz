@@ -10,17 +10,11 @@ import QuizLogo from '../src/components/QuizLogo';
 import Widget from '../src/components/Widget';
 import GitHubCorner from '../src/components/GitHubCorner';
 import Footer from '../src/components/Footer';
-import QuizForm from '../src/components/QuizForm';
-import { QuizDB } from '../src/interfaces/db';
 import QuizWidget from '../src/components/QuizWidget';
 
+import { QuizDB } from '../src/interfaces/db';
+
 const IndexPage = () => {
-  const [quiz, setQuiz] = useState({
-    title: '',
-    description: '',
-    id: -1,
-    bg: '',
-  });
   const [quizzes, setQuizzes] = useState<QuizDB[]>([]);
 
   useEffect(getQuizzes, []);
@@ -30,19 +24,15 @@ const IndexPage = () => {
       fetch(`http://localhost:3000/api/db`)
         .then((res) => (res.ok ? res.json() : null))
         .then((res) => {
-          const quizzes = res.quizzes.map((quiz) => {
-            delete quiz.questions;
-            return quiz;
+          const quizzes = res.quizzes.map((quiz: QuizDB) => {
+            const { id, title, description, bg } = quiz;
+            return { id, title, description, bg };
           });
 
           setQuizzes(quizzes);
         });
     } catch (err) {}
   }
-
-  const selectQuiz = (quiz: any) => {
-    setQuiz(quiz);
-  };
 
   return (
     <QuizBackground backgroundImage="">
@@ -59,11 +49,6 @@ const IndexPage = () => {
 
       <QuizContainer>
         <QuizLogo className="logo" />
-        <QuizForm
-          id={quiz.id}
-          title={quiz.title}
-          description={quiz.description}
-        />
 
         <Widget {...setShowAnimation({ delay: 0.2, duration: 0.5 })}>
           <Widget.Content>
@@ -106,7 +91,6 @@ const IndexPage = () => {
                 id={quiz.id}
                 title={quiz.title}
                 description={quiz.description}
-                handleClick={() => selectQuiz(quiz)}
                 key={quiz.id}
               />
             );

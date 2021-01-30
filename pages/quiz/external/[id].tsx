@@ -5,10 +5,21 @@ import Quiz from '../../../src/screens/Quiz';
 import { ExternalDB } from '../../../src/interfaces/db';
 import { NextPageContext } from 'next';
 import { ThemeProvider } from 'styled-components';
+import Head from 'next/head';
 
 export default function GuysQuiz({ externalDB }: { externalDB: ExternalDB }) {
   return (
     <ThemeProvider theme={externalDB.theme}>
+      <Head>
+        <meta property="og:image" content={externalDB?.bg} key="ogimage" />
+        <meta
+          property="og:description"
+          content={externalDB?.description}
+          key="ogdescription"
+        />
+
+        <title>{externalDB?.title}</title>
+      </Head>
       <Quiz quiz={externalDB} />
     </ThemeProvider>
   );
