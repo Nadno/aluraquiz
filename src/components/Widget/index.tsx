@@ -64,7 +64,7 @@ Widget.Content = styled.div`
 
 Widget.Image = styled.img`
   width: 100%;
-  /* height: 10rem; */
+  height: 15rem;
 `;
 
 Widget.Loading = () => (

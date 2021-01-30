@@ -6,11 +6,15 @@ interface Props {
 
 const QuizBackground = styled.div<Props>`
   width: 100%;
+  min-height: 100vh;
   background-size: cover;
   background-position: center;
   background-image: url(${({ backgroundImage }) => backgroundImage});
   background-color: ${({ theme }) => theme.colors.mainBg};
-  flex: 1;
+  
+  display: grid;
+  grid-template-columns: 400px minmax(200px, 800px);
+  gap: 2rem;
 
   @media screen and (max-width: 500px) {
     background-image: none;

@@ -1,16 +1,22 @@
 import styled from 'styled-components';
 
 // Tagged Function below
-const QuizContainer = styled.div`
-  width: 100%;
+const QuizContainer: any = styled.div`
   max-width: 350px;
   padding-top: 45px;
-  margin: auto 10%;
+  margin: 0 auto;
 
   @media screen and (max-width: 500px) {
-    margin: auto;
     padding: 10px;
   }
+`;
+
+QuizContainer.Grid = styled.section`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+  gap: 1rem;
+  padding-top: 110px;
+  
 `;
 
 export default QuizContainer;
