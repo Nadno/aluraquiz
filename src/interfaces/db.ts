@@ -1,4 +1,5 @@
 export interface QuizDB {
+  id?: number;
   bg: string;
   title: string;
   description: string;
