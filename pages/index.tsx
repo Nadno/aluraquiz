@@ -92,7 +92,7 @@ const IndexPage = () => {
                 return (
                   <li key={repoAndUser}>
                     <Widget.Topic
-                      href={`/quiz/${repoName}___${user}`}
+                      href={`/quiz/external/${repoName}___${user}`}
                       title={repoAndUser}
                     >
                       {repoAndUser}

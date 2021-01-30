@@ -2,7 +2,7 @@ import Widget from '../Widget';
 import Select from '../Select';
 import BackLinkArrow from '../BackLink';
 
-import { setShowAnimation, LinkAnimation } from '../../utils/animations';
+import { setShowAnimation } from '../../utils/animations';
 
 interface Props {
   title: string;
@@ -33,7 +33,6 @@ const QuestionWidget = ({
     <Widget {...setShowAnimation({ delay: 0, duration: 0.5 })}>
       <Widget.Header>
         <BackLinkArrow
-          {...LinkAnimation}
           href="/"
         />
         <h3>{`Pergunta ${questionIndex + 1} de ${totalQuestions}`}</h3>
