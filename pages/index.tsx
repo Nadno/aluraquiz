@@ -1,5 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 import { setShowAnimation } from '../src/utils/animations';
 
@@ -11,28 +10,42 @@ import QuizLogo from '../src/components/QuizLogo';
 import Widget from '../src/components/Widget';
 import GitHubCorner from '../src/components/GitHubCorner';
 import Footer from '../src/components/Footer';
-import Input from '../src/components/Input';
-import Button from '../src/components/Button';
+import QuizForm from '../src/components/QuizForm';
+import { QuizDB } from '../src/interfaces/db';
+import QuizWidget from '../src/components/QuizWidget';
 
 const IndexPage = () => {
-  const [user, setUser] = useState('');
-  const router = useRouter();
+  const [quiz, setQuiz] = useState({
+    title: '',
+    description: '',
+    id: -1,
+    bg: '',
+  });
+  const [quizzes, setQuizzes] = useState<QuizDB[]>([]);
 
-  const handleChange = (e: ChangeEvent) => {
-    const { value } = e.target as HTMLInputElement;
-    setUser(value);
+  useEffect(getQuizzes, []);
+
+  function getQuizzes() {
+    try {
+      fetch(`http://localhost:3000/api/db`)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((res) => {
+          const quizzes = res.quizzes.map((quiz) => {
+            delete quiz.questions;
+            return quiz;
+          });
+
+          setQuizzes(quizzes);
+        });
+    } catch (err) {}
+  }
+
+  const selectQuiz = (quiz: any) => {
+    setQuiz(quiz);
   };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    router.push(`/quiz?name=${user}`);
-  };
-
-  const isDisabled = !user.trim();
 
   return (
-    <QuizBackground backgroundImage={db.quizzes[0].bg}>
+    <QuizBackground backgroundImage="">
       <Head>
         <meta property="og:image" content={db.quizzes[0].bg} key="ogimage" />
         <meta
@@ -46,36 +59,13 @@ const IndexPage = () => {
 
       <QuizContainer>
         <QuizLogo className="logo" />
-        <Widget
-          {...setShowAnimation({ delay: 0, duration: 0.5 })}
-        >
-          <Widget.Header>
-            <h1>Javascript</h1>
-            {/* <Widget.Christmas src="https://cdn.pixabay.com/photo/2021/01/03/23/40/christmas-5885920_1280.png" /> */}
-          </Widget.Header>
+        <QuizForm
+          id={quiz.id}
+          title={quiz.title}
+          description={quiz.description}
+        />
 
-          <Widget.Content>
-            <p>Descubra o quanto você conhece javascript.</p>
-
-            <form onSubmit={handleSubmit}>
-              <Input.Text
-                id="name"
-                name="name"
-                value={user}
-                onChange={handleChange}
-                placeholder="Digite um nome para jogar :)"
-              />
-
-              <Button type="submit" disabled={isDisabled}>
-                JOGAR
-              </Button>
-            </form>
-          </Widget.Content>
-        </Widget>
-
-        <Widget
-          {...setShowAnimation({ delay: 0.2, duration: 0.5 })}
-        >
+        <Widget {...setShowAnimation({ delay: 0.2, duration: 0.5 })}>
           <Widget.Content>
             <h1>Quizes da Galera</h1>
 
@@ -104,10 +94,24 @@ const IndexPage = () => {
           </Widget.Content>
         </Widget>
 
-        <Footer
-          {...setShowAnimation({ delay: 0.4, duration: 0.5 })}
-        />
+        <Footer {...setShowAnimation({ delay: 0.4, duration: 0.5 })} />
       </QuizContainer>
+
+      <QuizContainer.Grid>
+        {quizzes.length &&
+          quizzes.map((quiz) => {
+            return (
+              <QuizWidget
+                bg={quiz.bg}
+                id={quiz.id}
+                title={quiz.title}
+                description={quiz.description}
+                handleClick={() => selectQuiz(quiz)}
+                key={quiz.id}
+              />
+            );
+          })}
+      </QuizContainer.Grid>
 
       <GitHubCorner projectUrl="https://github.com/Nadno/aluraquiz" />
     </QuizBackground>
