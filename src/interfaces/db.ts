@@ -1,4 +1,4 @@
-export interface QuizDB {
+export interface ExternalQuizDB {
   id?: number;
   bg: string;
   title: string;
@@ -11,6 +11,11 @@ export interface QuizDB {
     alternatives: string[];
   }>;
 }
+
+export interface QuizDB extends ExternalQuizDB {
+  id: number;
+}
+
 
 export interface ThemeDB {
   colors: {
