@@ -18,13 +18,13 @@
           ]
         },
         {
-          "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+          "image": "https://res.cloudinary.com/practicaldev/image/fetch/s--44yasyNX--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://devtolydiahallie.s3-us-west-1.amazonaws.com/gid1.6.gif",
           "title": "Qual das opções abaixo melhor descreve IIFE em JS?",
           "description": "Immediately Invoked Function",
           "answer": 1,
           "alternatives": [
             "IIFE, como diz a tradução, é uma função imediatamente executada",
-            "A IFFE (Função Imediatamente Executada) é uma função utilizada entre parêntes para dizer a linguagem que não estamos apenas declarando a função",
+            "A IFFE (Função Imediatamente Executada) é uma função utilizada entre parênteses para dizer a linguagem que não estamos apenas declarando uma função",
             "IIFE define um tipo especial de função para a linguagem, que pode se executada imediatamente",
             "IIFE é uma função que cria um novo escopo para o código local"
           ]
@@ -42,7 +42,7 @@
           ]
         },
         {
-          "image": "https://blog.da2k.com.br/uploads/2017/01/object-reference-javascript.png",
+          "image": "https://res.cloudinary.com/practicaldev/image/fetch/s--arUZu8mR--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://user-images.githubusercontent.com/19341550/72658820-91cde680-39dc-11ea-897d-73be34a174c0.gif",
           "title": "Qual valor em JS não é igual a ele mesmo?",
           "description": "undefined === undefined",
           "answer": 0,
@@ -54,7 +54,7 @@
           ]
         },
         {
-          "image": "https://blog.da2k.com.br/uploads/2017/01/object-reference-javascript.png",
+          "image": "https://miro.medium.com/max/3200/1*OF0xEMkWBv-69zvmNs6RDQ.gif",
           "title": "O que é a coerção implícita de tipos?",
           "description": "if (obj1) {...}",
           "answer": 0,
@@ -66,7 +66,7 @@
           ]
         },
         {
-          "image": "https://blog.da2k.com.br/uploads/2017/01/object-reference-javascript.png",
+          "image": "https://i.gifer.com/JKZE.gif",
           "title": "O que melhor descreve callbacks?",
           "description": "function (..) {...}",
           "answer": 2,
@@ -78,7 +78,7 @@
           ]
         },
         {
-          "image": "https://blog.da2k.com.br/uploads/2017/01/object-reference-javascript.png",
+          "image": "https://miro.medium.com/max/8544/0*bQ2s1lDGEYzGjWVU",
           "title": "Qual das alternativas abaixo melhor diferencia funções normais de arrow functions?",
           "description": "(..) => {...}",
           "answer": 2,
@@ -90,7 +90,7 @@
           ]
         },
         {
-          "image": "https://blog.da2k.com.br/uploads/2017/01/object-reference-javascript.png",
+          "image": "https://blog.cronapp.io/wp-content/uploads/2020/09/javascript-1.jpg",
           "title": "Como é possível criar um novo escopo de bloco em JS?",
           "description": "var name = 'escopo';",
           "answer": 3,
