@@ -16,6 +16,10 @@ interface Props {
 const StyledQuiz = styled.div`
   transition: transform 0.5s ease;
 
+  section {
+    height: 32rem;
+  }
+
   &:hover {
     cursor: pointer;
     transform: translateY(-8px);
@@ -42,10 +46,10 @@ export default function QuizWidget({ bg, id, title, description }: Props) {
       >
         <Link href={`/quiz/${id}`} title={title}>
           <Widget.Header>
-            <h1>{title}</h1>
+            
+          <h1>{title}</h1>
             {/* <Widget.Christmas src="https://cdn.pixabay.com/photo/2021/01/03/23/40/christmas-5885920_1280.png" /> */}
           </Widget.Header>
-
           <Widget.Image src={bg} />
         </Link>
 

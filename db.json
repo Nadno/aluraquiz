@@ -3,7 +3,7 @@
     {
       "id": 0,
       "bg": "https://cms-assets.tutsplus.com/uploads/users/48/posts/29789/image/js-product.png",
-      "title": "Quiz JS",
+      "title": "Javascript",
       "description": "Teste seus conhecimentos em Javascript",
       "questions": [
         {
@@ -105,9 +105,81 @@
           ]
         }
       ]
+    },
+    {
+      "id": 1,
+      "bg": "https://assets.b9.com.br/wp-content/uploads/2020/06/3682297-the-last-of-us-part-ii-review-promothumb.jpg",
+      "title": "The Last of Us",
+      "description": "Descubra o quanto você sabe sobre o universo de TLOU",
+      "questions": [
+        {
+          "image": "https://i0.wp.com/culturedvultures.com/wp-content/uploads/2016/12/giphy-4.gif?fit=480%2C270&ssl=1",
+          "title": "Em qua ano o começa o surto de zombie?",
+          "description": "O começo",
+          "answer": 1,
+          "alternatives": [
+            "2012, fácil...",
+            "O surto tem início em 2013",
+            "Tem início em 2014, transformando todos hospedeiros em monstros",
+            "Nenhuma das alternativas a cima"
+          ]
+        },
+        {
+          "image": "https://media1.tenor.com/images/311451032831094964bff014c4b8f605/tenor.gif?itemid=17644790",
+          "title": "Qual o nome do fungo que dá origem aos zombies?",
+          "description": "A praga",
+          "answer": 0,
+          "alternatives": [
+            "Cordyceps",
+            "Aedes aegypti",
+            "A temida Streptococcus pyogenes",
+            "Clostridium difficile"
+          ]
+        },
+        {
+          "image": "https://media.giphy.com/media/GjpPaPwHA0d5S/giphy.gif",
+          "title": "Qual o nome da filha de Joel?",
+          "description": "...",
+          "answer": 2,
+          "alternatives": [
+            "Ellie",
+            "Elana",
+            "Sarah",
+            "Felícia"
+          ]
+        },
+        {
+          "image": "https://pm1.narvii.com/6392/b73d2b20162bec0dd7190747e29409412c696ac0_hq.jpg",
+          "title": "Quem são os vagalumes?",
+          "description": "...",
+          "answer": 1,
+          "alternatives": [
+            "Insetos que brilham",
+            "Um grupo revolucionário que busca criar uma vacina para a infecção",
+            "Grupo revolucionário que tenta acabar com a opressão do exercito sobre a população restante",
+            "Nenhuma das alternativas"
+          ]
+        },
+        {
+          "image": "https://i.pinimg.com/originals/46/9d/95/469d95404a4db5fe6e23cd6877c7be0f.gif",
+          "title": "Porque Joel leva a Ellie aos vagalumes?",
+          "description": "...",
+          "answer": 3,
+          "alternatives": [
+            "Para mantê-la a salvo dos infectados",
+            "Para Ellie encontrar sua mãe",
+            "Ambas alternativas a cima",
+            "Para descobrirem a cura"
+          ]
+        }
+      ]
     }
   ],
-  "external": ["https://aluraquiz-base.alura-challenges.vercel.app/"],
+  "external": [
+    "https://aluraquiz-base.alura-challenges.vercel.app/",
+    "https://aluraquiz-coffee.leonardot07.vercel.app/",
+    "https://1sec-quiz.victoroda.vercel.app/"
+  ],
   "theme": {
     "default": {
       "colors": {
@@ -117,17 +189,6 @@
         "contrastText": "#FFFFFF",
         "wrong": "#FF5722",
         "success": "#4CAF50"
-      },
-      "borderRadius": "4px"
-    },
-    "christmas": {
-      "colors": {
-        "primary": "#E61725",
-        "secondary": "#006619",
-        "mainBg": "#330508",
-        "contrastText": "#ffffff",
-        "wrong": "#BB2528",
-        "success": "#165B33"
       },
       "borderRadius": "4px"
     }

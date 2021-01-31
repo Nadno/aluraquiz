@@ -6,7 +6,9 @@ interface Props {
 
 const QuizBackground = styled.div<Props>`
   width: 100%;
+  height: 100%;
   min-height: 100vh;
+
   background-size: cover;
   background-position: center;
   background-image: url(${({ backgroundImage }) => backgroundImage});
@@ -18,7 +20,7 @@ const QuizBackground = styled.div<Props>`
 
   @media screen and (max-width: 750px) {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto;
   }
 
   @media screen and (max-width: 500px) {

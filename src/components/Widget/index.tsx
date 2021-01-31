@@ -109,6 +109,7 @@ Widget.Topic = styled(Link)`
   color: ${({ theme }) => theme.colors.contrastText};
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.borderRadius};
+  margin-top: 1rem;
 
   font-size: 1.5rem;
   font-weight: 500;
