@@ -42,9 +42,9 @@ export async function getStaticPaths() {
       .then((res) => (res.ok ? res.json() : null))
       .then((res) => res.quizzes);
 
-    const getParamsFromQuizId = (quiz: QuizDB, index: number) => ({
+    const getParamsFromQuizId = (quiz: QuizDB) => ({
       params: {
-        quiz: String(quiz.id || index),
+        quiz: String(quiz.id),
       },
     });
     const paths = quizzes.map(getParamsFromQuizId);
