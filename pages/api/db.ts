@@ -14,6 +14,5 @@ export default function dbHandler(request: NextApiRequest, response: NextApiResp
     'GET, OPTIONS, PATCH, DELETE, POST, PUT'
   );
 
-  // CRIAR POST?
   response.json(db);
 }
