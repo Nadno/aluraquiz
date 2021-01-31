@@ -21,7 +21,7 @@ const IndexPage = () => {
 
   function getQuizzes() {
     try {
-      fetch(`http://localhost:3000/api/db`)
+      fetch(`https://aluraquiz.nadno.vercel.app/api/db`)
         .then((res) => (res.ok ? res.json() : null))
         .then((res) => {
           const quizzes = res.quizzes.map((quiz: QuizDB) => {

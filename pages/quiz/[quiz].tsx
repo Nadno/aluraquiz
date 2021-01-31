@@ -25,7 +25,7 @@ export default function QuizPage({ quiz }: { quiz: QuizDB }) {
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
   const quizId = params ? Number(params.quiz as string) : 0;
-  const quiz = await fetch(`http://localhost:3000/api/db`)
+  const quiz = await fetch(`https://aluraquiz.nadno.vercel.app/api/db`)
     .then((res) => (res.ok ? res.json() : null))
     .then((res) => res.quizzes[quizId]);
 
@@ -38,7 +38,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
 
 export async function getStaticPaths() {
   try {
-    const quizzes = await fetch(`http://localhost:3000/api/db`)
+    const quizzes = await fetch(`https://aluraquiz.nadno.vercel.app/api/db`)
       .then((res) => (res.ok ? res.json() : null))
       .then((res) => res.quizzes);
 
